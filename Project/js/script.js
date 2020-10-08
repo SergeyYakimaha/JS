@@ -81,17 +81,20 @@ const personalMovieDB = {
 
     toggleVisibleMyDB() {
         this.privat = !this.privat;
+    },
+    showThis: function() {
+        return this;
     }        
 };
 
-personalMovieDB.start();
-personalMovieDB.rememberMyFilms();
-personalMovieDB.detectPersonalLevel();
+// personalMovieDB.start();
+// personalMovieDB.rememberMyFilms();
+// personalMovieDB.detectPersonalLevel();
 
-personalMovieDB.showMyDB();
-personalMovieDB.toggleVisibleMyDB();
-personalMovieDB.showMyDB();
+// personalMovieDB.showMyDB();
+// personalMovieDB.toggleVisibleMyDB();
+// personalMovieDB.showMyDB();
 
-personalMovieDB.writeYourGenres();
+// personalMovieDB.writeYourGenres();
 
-console.log(personalMovieDB);
+// console.log(personalMovieDB);
