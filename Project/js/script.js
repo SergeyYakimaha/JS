@@ -1,48 +1,37 @@
-window.addEventListener('DOMContentLoaded', function() {
-
-    // Tabs
-    
-	let tabs = document.querySelectorAll('.tabheader__item'),
-		tabsContent = document.querySelectorAll('.tabcontent'),
-		tabsParent = document.querySelector('.tabheader__items');
-
-	function hideTabContent() {
+"use strict";
+ 
+const tabContent = document.querySelectorAll('.tabcontent'),
+      tabMenu = document.querySelectorAll('.tabheader__item');
+ 
+ 
+function hideElement(el) {
+    el.style.display = 'none';
+}
+ 
+function showElement(el) {
+    el.style.display = 'block';
+}
+ 
+function makeTabs(tabMenu, tabContent, activeClass) {
+    tabMenu.forEach((tab, idx) => {
+        tab.addEventListener('click', () => {
+            tabMenu.forEach(el => {
+                el.classList.remove(activeClass);
+                tabMenu[idx].classList.add(activeClass);
+            });
+            
+            tabContent.forEach(el => {
+                hideElement(el);
+                showElement(tabContent[idx]);
+            });
+        });
         
-        tabsContent.forEach(item => {
-            item.classList.add('hide');
-            item.classList.remove('show', 'fade');
-        });
-
-        tabs.forEach(item => {
-            item.classList.remove('tabheader__item_active');
-        });
-	}
-
-	function showTabContent(i = 0) {
-        tabsContent[i].classList.add('show', 'fade');
-        tabsContent[i].classList.remove('hide');
-        tabs[i].classList.add('tabheader__item_active');
-    }
-    
-    hideTabContent();
-    showTabContent();
-
-	// tabsParent.addEventListener('click', function(event) {
-	// 	const target = event.target;
-	// 	if(target && target.classList.contains('tabheader__item')) {
-    //         tabs.forEach((item, i) => {
-    //             if (target == item) {
-    //                 hideTabContent();
-    //                 showTabContent(i);
-    //             }
-    //         });
-	// 	}
-    // });
-    
-    tabs.forEach((item, i) => {
-        item.addEventListener('click', function() {
-            hideTabContent();
-            showTabContent(i);
-        });
-    });    
-});
+        if(!tab.classList.contains(activeClass)) {
+            hideElement(tabContent[idx]);
+        } else {
+            showElement(tabContent[idx]);
+        }
+    });
+}
+ 
+makeTabs(tabMenu, tabContent, 'tabheader__item_active');
