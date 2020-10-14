@@ -62,10 +62,9 @@ window.addEventListener('DOMContentLoaded', function () {
     function getZero(num) {
         if (num >= 0 && num < 10) {
             return '0' + num;
-        } else
-            if (num < 0) { return '00'; } else {
-                return num;
-            }
+        } else {
+            return num;
+        }
     }
 
     function setClock(selector, endtime) {
@@ -94,5 +93,43 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     setClock('.timer', deadline);
+
+    // Modal
+
+    const btnsShowModal = document.querySelectorAll('[data-modal]'),
+        btnsCloseModal = document.querySelectorAll('[data-close]'),
+        modal = document.querySelector('.modal');
+
+    btnsShowModal.forEach(btn => {
+        btn.addEventListener('click', event => {
+            modal.classList.add('show');
+            modal.classList.remove('hide');
+            document.body.style.overflow = 'hidden';
+            // modal.classList.toggle('show');
+        });
+    });
+
+    btnsCloseModal.forEach(btn => {
+        btn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', event => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.classList.add('hide');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+
+    });
 
 });
