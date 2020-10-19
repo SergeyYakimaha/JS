@@ -107,7 +107,7 @@ const p1 = new Promise((myResolve, myReject) => {
 
 Promise.race([p1, p2]).then(() => {
     console.log('Succsess');
-});     
+});
 
       
 
