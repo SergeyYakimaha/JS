@@ -1,5 +1,16 @@
 'use strinct';
 
+const post = (url, data) => { 
+    let req = fetch(url, 
+        { method: "POST", 
+        headers: { 
+            "content-type": "application/json" 
+        }, body: data 
+    });
+    
+    return req.then(data => data.json()); 
+};
+
 const p = new Promise((resolve, reject) => {
     setTimeout(() => {
         console.log('Preparing data ...');
@@ -23,7 +34,7 @@ const p = new Promise((resolve, reject) => {
 p.then(data => {
     return new Promise(function(resolve, reject) {
         data.modify = new Date();
-        
+
         if (data.port == 500) {
             resolve(data);
         } else {
@@ -91,7 +102,7 @@ const p1 = new Promise((myResolve, myReject) => {
             myReject();        
         }, 5000);
       }),
-      
+
       p2 = new Promise((myResolve, myReject) => {
         setTimeout(() => {
             console.log(2000); 
@@ -108,7 +119,3 @@ const p1 = new Promise((myResolve, myReject) => {
 Promise.race([p1, p2]).then(() => {
     console.log('Succsess');
 });
-
-      
-
-      

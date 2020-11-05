@@ -1,5 +1,24 @@
 'use script';
 
+'use script';
+
+const fn1 = str => 'prex_' + str;
+const fn2 = str => str.toUpperCase();
+
+function compose() {
+    let result = '';
+
+    Array.from(arguments).reverse().forEach(element => {
+       result += element('Rest');
+    });
+    
+    return result;
+}
+
+console.log(compose(fn1, fn2, fn2));
+
+const txt= compose(fn1, fn2)("text");
+
 // filter
 
 const names = ['Ivan', 'Ann', 'Ksenia', 'Voldemart'];
