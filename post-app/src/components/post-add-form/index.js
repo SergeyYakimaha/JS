@@ -1,2 +1,2 @@
-import PostAddFrom from './post-add-form';
-export default PostAddFrom;
+import PostAddForm from './post-add-form';
+export default PostAddForm;
